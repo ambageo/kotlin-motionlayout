@@ -28,12 +28,16 @@ class Step8Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_step8)
-
         coordinateMotion()
     }
 
     private fun coordinateMotion() {
-        // TODO: set progress of MotionLayout based on an AppBarLayout.OnOffsetChangedListener
-
+        // TODO: set progress of MotionLayout based on an AppBarLayout.OnOffsetChangedListener //DONE
+        var appBarLayout: AppBarLayout = findViewById(R.id.appbar_layout)
+        var motionLayout: MotionLayout = findViewById(R.id.motion_layout)
+        appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener{unused, verticalOffset ->
+        val seekPosition = - verticalOffset / appBarLayout.totalScrollRange.toFloat()
+        motionLayout.progress = seekPosition
+    })
     }
 }
